@@ -1,4 +1,16 @@
+const { string } = require('joi');
 const mongoose = require('mongoose');
+
+
+main().catch(err => console.log(err));
+
+async function main() {
+  await mongoose.connect("mongodb+srv://amandeep:amandeep@cluster0.vem3ndw.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+  .then(()=>console.log("database is connected"))
+
+  
+}
+
 
 
 const UserSchema = new mongoose.Schema({
@@ -15,7 +27,7 @@ const UserSchema = new mongoose.Schema({
         required: true,
     },
     phoneNumber: {
-        type: Number,
+        type: String,
         required: true,
     },
     country: {
@@ -35,13 +47,14 @@ const UserSchema = new mongoose.Schema({
         required: true,
     },
     zip: {
-        type: Number,
-
+        type: String,
+        // required: true,
     },
     message: {
         type: String,
+        required: true,
     },
 }); 
 
-const UserModel = mongoose.model('user', UserSchema);
+const UserModel = mongoose.model('signup', UserSchema);
 module.exports = UserModel;
